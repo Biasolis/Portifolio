@@ -1,0 +1,48 @@
+/* Arquivo: frontend/src/components/Hero.module.css */
+.heroSection {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 4rem; /* Equivalente ao .section */
+}
+
+.name {
+  font-size: 2.8rem; /* text-5xl */
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2rem; /* text-3xl */
+  color: var(--dark-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.infoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px; /* gap-y-2 gap-x-6 */
+  color: var(--dark-text-secondary);
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dark-text-secondary); /* Garante que o <a> comece com a cor certa */
+}
+
+.infoItem > svg {
+  flex-shrink: 0;
+}
+
+/* O <a> já herda o hover do index.css */
+
+@media (min-width: 768px) {
+  .name {
+    font-size: 4.5rem; /* md:text-7xl */
+  }
+  .title {
+    font-size: 3rem; /* md:text-5xl */
+  }
+}

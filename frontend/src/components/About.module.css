@@ -1,0 +1,12 @@
+/* Arquivo: frontend/src/components/About.module.css */
+.title {
+  font-size: 1.875rem; /* text-3xl */
+  line-height: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.bio {
+  font-size: 1.125rem; /* text-lg */
+  line-height: 1.75; /* leading-relaxed */
+  white-space: pre-line; /* Mantém as quebras de linha do DB */
+}

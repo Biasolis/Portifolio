@@ -1,0 +1,47 @@
+/* Arquivo: frontend/src/components/Skills.module.css */
+.title {
+  font-size: 1.875rem; /* text-3xl */
+  margin-bottom: 2rem;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem; /* gap-8 */
+}
+
+.skillCard {
+  background-color: var(--dark-card);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cardTitle {
+  font-size: 1.25rem; /* text-xl */
+  color: var(--dark-accent);
+  margin-bottom: 1rem;
+}
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-2 */
+}
+
+.skillItem {
+  color: var(--dark-text-secondary);
+}
+
+/* Layout responsivo */
+@media (min-width: 768px) {
+  .skillsGrid {
+    grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .skillsGrid {
+    grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+  }
+}

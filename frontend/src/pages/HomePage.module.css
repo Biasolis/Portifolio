@@ -1,0 +1,39 @@
+/* Arquivo: frontend/src/pages/HomePage.module.css */
+
+.mainContainer {
+  max-width: 960px; /* Era max-w-4xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2.5rem 1.5rem; /* py-12 md:py-20 e px-6 */
+}
+
+@media (min-width: 768px) {
+  .mainContainer {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.section {
+  margin-bottom: 4rem; /* mb-16 */
+}
+
+@media (min-width: 768px) {
+  .section {
+    margin-bottom: 6rem; /* md:mb-24 */
+  }
+}
+
+.loading {
+  text-align: center;
+  color: var(--dark-accent);
+  padding: 4rem;
+  font-size: 1.2rem;
+}
+
+.error {
+  text-align: center;
+  color: #f87171; /* Equivalente ao red-400 */
+  padding: 4rem;
+  font-size: 1.2rem;
+}
