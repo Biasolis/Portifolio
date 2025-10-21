@@ -10,7 +10,8 @@ import Footer from '../components/Footer';
 // Importa nosso CSS Module
 import styles from './HomePage.module.css';
 
-const API_URL = 'http://localhost:3001/api/portfolio-data';
+// URL da API alterada para ser relativa
+const API_URL = '/api/portfolio-data';
 
 function HomePage() {
   const [data, setData] = useState(null);
@@ -21,6 +22,7 @@ function HomePage() {
     const fetchData = async () => {
       try {
         setLoading(true);
+        // O Axios irá automaticamente usar o domínio atual + /api/portfolio-data
         const response = await axios.get(API_URL);
         setData(response.data);
         setError(null);
@@ -50,16 +52,11 @@ function HomePage() {
   const { personalInfo, skills, experiences, education } = data;
 
   return (
-    // Layout principal com nossa classe do CSS Module
     <div className={styles.mainContainer}>
       <Hero data={personalInfo} />
-      {/* Passamos a classe 'section' como prop para os componentes 
-        para padronizar o espaçamento
-      */}
       <About data={personalInfo} sectionClass={styles.section} />
       <Experience data={experiences} sectionClass={styles.section} />
       <Skills data={skills} sectionClass={styles.section} />
-      {/* (Componente de Educação pode ser adicionado aqui) */}
       <Footer data={personalInfo} />
     </div>
   );
