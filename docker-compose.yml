@@ -1,19 +1,38 @@
 version: '3.8'
-services:
-  db:
-    image: postgres:14-alpine
-    container_name: portfolio_db
-    restart: always
-    environment:
-      POSTGRES_USER: leoadmin       # Você pode mudar isso
-      POSTGRES_PASSWORD: seupasswordseguro  # MUDE ISSO para uma senha forte
-      POSTGRES_DB: portfolio_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
 
-volumes:
-  postgres-data:
+services:
+  # 1. Serviço da API (Backend Node.js)
+  api:
+    container_name: portfolio_api_prod
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    # Adiciona a flag 'host.docker.internal' ao /etc/hosts do container
+    # Isso é necessário em algumas versões do Docker no Linux
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Pega os segredos do .env
+    env_file:
+      - ./backend/.env
+    # Sem 'ports' - o NPM falará com ele direto pela rede
+    networks:
+      - npm_net # Conecta na rede externa
+    # Não depende mais do 'db'
+    
+  # 2. Serviço do Site (Frontend React/Nginx)
+  web:
+    container_name: portfolio_web_prod
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    # Sem 'ports' - o NPM falará com ele direto pela rede
+    networks:
+      - npm_net
+
+# Define a rede externa que já existe
+networks:
+  npm_net:
+    name: host_npm_network
+    external: true
