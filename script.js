@@ -47,6 +47,21 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  // Baixar CV (PDF): gera o PDF a partir da própria página (impressão),
+  // então o currículo sempre reflete o conteúdo atual do portfólio.
+  var printCv = document.getElementById('printCv');
+  if (printCv) {
+    printCv.addEventListener('click', function () {
+      var originalTitle = document.title;
+      document.title = 'Leonardo Biasoli - Curriculo';
+      window.addEventListener('afterprint', function restoreTitle() {
+        document.title = originalTitle;
+        window.removeEventListener('afterprint', restoreTitle);
+      });
+      window.print();
+    });
+  }
+
   // Botão "voltar ao topo"
   var toTop = document.getElementById('toTop');
   if (toTop) {

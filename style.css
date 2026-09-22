@@ -577,3 +577,164 @@ img, svg { display: block; max-width: 100%; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .scroll-hint { animation: none; }
 }
+
+/* ---------- PRINT (Currículo 1 página, gerado a partir do portfólio) ---------- */
+.print-only { display: none; }
+
+@media print {
+  @page { size: A4; margin: 12mm 14mm; }
+
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  /* Força tema claro no PDF, independente do tema escolhido na tela */
+  :root, [data-theme="dark"] {
+    --bg: #ffffff;
+    --bg-elevated: #ffffff;
+    --card-grad-1: #ffffff;
+    --card-grad-2: #ffffff;
+    --border: #cfcfcf;
+    --heading: #111111;
+    --text: #222222;
+    --text-muted: #555555;
+    --cyan: #0c6e7e;
+    --purple: #5b21b6;
+  }
+
+  .no-print { display: none !important; }
+  .print-only { display: block; }
+
+  .hero {
+    min-height: 0;
+    padding: 0 0 10px;
+    background: none !important;
+    text-align: left;
+  }
+  .hero__inner { max-width: none; }
+
+  .eyebrow { display: none; }
+
+  .hero__name {
+    font-size: 20pt;
+    margin: 0 0 2px;
+  }
+
+  .hero__role {
+    font-size: 9.5pt;
+    margin: 0 0 4px;
+    max-width: none;
+  }
+
+  .print-contact {
+    font-size: 8.5pt;
+    color: #333;
+    margin: 0 0 8px;
+  }
+
+  .focus-badges { justify-content: flex-start; gap: 6px; margin-bottom: 10px; }
+  .focus-badge {
+    font-size: 6.5pt;
+    padding: 2px 8px;
+    background: #fff !important;
+    color: #333 !important;
+    border-color: #999;
+  }
+  .focus-badge--highlight {
+    background: #fff !important;
+    color: #111 !important;
+    border-color: #111;
+  }
+
+  main { display: block; }
+
+  .section {
+    max-width: none;
+    padding: 8px 0;
+    page-break-inside: avoid;
+  }
+
+  .section__title {
+    font-size: 11pt;
+    text-align: left;
+    margin: 0 0 8px;
+    padding-bottom: 4px;
+  }
+  .section__title::after {
+    left: 0;
+    transform: none;
+    width: 40px;
+    height: 2px;
+    background: #111 !important;
+  }
+
+  .card {
+    background: #fff !important;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+  .card--quote {
+    border-left: 2px solid #999;
+    padding-left: 10px;
+    font-size: 9pt;
+  }
+  .card--quote p { margin: 0 0 6px; }
+
+  .skills { gap: 5px; }
+  .skill {
+    font-size: 7.5pt;
+    padding: 2px 8px;
+    background: #fff !important;
+    border-color: #999;
+    color: #222 !important;
+  }
+  .skill i { display: none; }
+
+  .timeline { padding-left: 0; }
+  .timeline::before { display: none; }
+  .timeline__dot { display: none; }
+  .timeline__item { margin-bottom: 10px; page-break-inside: avoid; }
+
+  .card__head { margin-bottom: 4px; }
+  .card__head h3 { font-size: 9.5pt; }
+  .card__company { font-size: 8pt; }
+  .badge {
+    background: #fff !important;
+    border-color: #999;
+    font-size: 7.5pt;
+    padding: 1px 8px;
+  }
+
+  .card li {
+    font-size: 8.5pt;
+    margin-bottom: 3px;
+  }
+  .card li i { display: none; }
+  .card li::before {
+    content: "–";
+    margin-right: 4px;
+    color: #555;
+  }
+  /* Compacta cada experiência para no máximo 3 bullets no currículo */
+  .timeline .card li:nth-child(n+4) { display: none; }
+
+  .education {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 20px;
+  }
+  .education__card {
+    background: #fff !important;
+    border: none;
+    border-left: 2px solid #999;
+    border-radius: 0;
+    padding: 0 0 0 10px;
+  }
+  .education__card h3 { font-size: 8.5pt; }
+  .education__school, .education__date { font-size: 7.5pt; }
+}
