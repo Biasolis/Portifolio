@@ -610,6 +610,14 @@ img, svg { display: block; max-width: 100%; }
   .no-print { display: none !important; }
   .print-only { display: block; }
 
+  /* Neutraliza a animação de revelação ao rolar: no PDF tudo deve
+     aparecer de imediato, independente de ter "entrado" na viewport. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   .hero {
     min-height: 0;
     padding: 0 0 10px;
